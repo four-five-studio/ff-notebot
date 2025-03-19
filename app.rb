@@ -8,7 +8,7 @@ Dotenv.load
 
 # Initialize Discord bot (without running it)
 
-class NoteBot < Sinatra::Base
+class App < Sinatra::Base
   use Rack::Auth::Basic, "Protected Area" do |username, password|
     username == ENV['HTTP_AUTH_USERNAME'] && password == ENV['HTTP_AUTH_PASSWORD']
   end
