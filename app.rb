@@ -9,6 +9,10 @@ Dotenv.load
 # Initialize Discord bot (without running it)
 
 class NoteBot < Sinatra::Base
+  use Rack::Auth::Basic, "Protected Area" do |username, password|
+    username == ENV['HTTP_AUTH_USERNAME'] && password == ENV['HTTP_AUTH_PASSWORD']
+  end
+
   # Fetch last 100 messages from a Discord channel
   def fetch_messages(channel_id)
     bot = Discordrb::Bot.new(token: ENV['BOT_TOKEN'], client_id: ENV['CLIENT_ID'] )
