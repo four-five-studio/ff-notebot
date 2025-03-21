@@ -72,8 +72,12 @@ Your task is to draft a public blog post summarizing the shared content. Follow 
 Here are the messages from the channel:
       "
 
+    params[:days] ||= 7
+    one_week_ago = Time.now - (params[:days].to_i * 24 * 60 * 60)
     messages.each do |msg|
-      prompt << "#{msg[:timestamp]} - #{msg[:author]}: #{msg[:content]}\n"
+      if msg[:timestamp] >= one_week_ago
+        prompt << "#{msg[:timestamp]} - #{msg[:author]}: #{msg[:content]}\n"
+      end
     end
 
     markdown_content = prompt_llama(prompt)
