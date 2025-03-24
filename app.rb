@@ -41,6 +41,10 @@ class App < Sinatra::Base
       'james_darling' => 'James',
       'soniaturcotte' => 'Sonia',
       'benunsworth_' => 'Ben',
+      'miakepia' => 'Mia',
+      'undermanager' => 'Russell',
+      'ellafitz' => 'Ella',
+      'joscho_83193' => 'Jo',
     }[name] || name
   end
 
