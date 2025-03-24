@@ -23,7 +23,7 @@ class App < Sinatra::Base
       {
         id: msg.id,
         content: msg.content,
-        author: msg.author.username,
+        author: humanize_name(msg.author.username),
         timestamp: msg.timestamp
       }
     end
@@ -31,6 +31,17 @@ class App < Sinatra::Base
     messages
   rescue StandardError => e
     { error: e.message }
+  end
+
+  def humanize_name(name)
+    {
+      'annagoss' => 'Anna',
+      'eliotf' => 'Eliot',
+      'rodcorp' => 'Rod',
+      'james_darling' => 'James',
+      'soniaturcotte' => 'Sonia',
+      'benunsworth_' => 'Ben',
+    }[name] || name
   end
 
   def prompt_llama(prompt)
