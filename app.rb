@@ -37,7 +37,7 @@ class App < Sinatra::Base
     response = HTTP.auth("Bearer #{ENV['REPLICATE_API_TOKEN']}")
                 .headers(content_type: 'application/json', prefer: 'wait')
                 .post("https://api.replicate.com/v1/models/meta/meta-llama-3.1-405b-instruct/predictions",
-                      json: { input: { prompt: prompt} })
+                      json: { input: { prompt: prompt, max_tokens: 5120 } })
 
     if response.status.success?
       result = response.parse
