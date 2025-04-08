@@ -51,7 +51,7 @@ class App < Sinatra::Base
   def prompt_llama(prompt)
     response = HTTP.auth("Bearer #{ENV['REPLICATE_API_TOKEN']}")
                 .headers(content_type: 'application/json', prefer: 'wait')
-                .post("https://api.replicate.com/v1/models/meta/meta-llama-3.1-405b-instruct/predictions",
+                .post("https://api.replicate.com/v1/models/meta/llama-4-maverick-instruct/predictions",
                       json: { input: { prompt: prompt, max_tokens: 5120 } })
 
     if response.status.success?
